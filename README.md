@@ -107,7 +107,9 @@ HTB bot visits, submits credentials, and they're logged.
 - Result: HTB{...}
 
 ---
+![image](https://github.com/user-attachments/assets/7d57a764-b45f-47f4-9fdd-442bce8a53c1)
 
+---
 ### Step 6: Cleanup
 ```bash
 Ctrl+C
