@@ -76,3 +76,12 @@ Inject this script into the vulnerable field
 ```bash
 cat cookies.txt
 ```
+
+### 4. Use Cookie in login.php
+URL: ` http://10.129.31.89/hijacking/login.php `
+
+Added cookie via DevTools > Storage > Cookies.
+
+Refreshed to get the flag.
+
+
